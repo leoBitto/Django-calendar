@@ -1,0 +1,55 @@
+<!-- templates/calendar/monthly_calendar.html -->
+
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between mb-4">
+    <h2>{{ month }}/{{ year }} Calendar</h2>
+    <div>
+      <a href="{% url 'calendar:monthly_calendar' year=prev_month.year month=prev_month.month %}" class="btn btn-secondary me-2">
+        Previous Month
+      </a>
+      <a href="{% url 'calendar:monthly_calendar' year=next_month.year month=next_month.month %}" class="btn btn-secondary">
+        Next Month
+      </a>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Mon</th>
+        <th scope="col">Tue</th>
+        <th scope="col">Wed</th>
+        <th scope="col">Thu</th>
+        <th scope="col">Fri</th>
+        <th scope="col">Sat</th>
+        <th scope="col">Sun</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in calendar %}
+        <tr>
+          {% for day in week %}
+            <td class="p-2">
+              {% if day != 0 %}
+                
+                  
+                    <div class="day-box">
+                      {{ day }}
+                      {% if event %}
+                        <p class="mb-0">{{ event.title }} ({{ event.start_time }} - {{ event.end_time }})</p>
+                      {% endif %}
+                    </div>
+                  </a>
+                
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

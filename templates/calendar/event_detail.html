@@ -1,0 +1,11 @@
+<!-- templates/calendar/event_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ event.title }}</h2>
+  <p><strong>Start Date:</strong> {{ event.start_date }} {{ event.start_time }}</p>
+  <p><strong>End Date:</strong> {{ event.end_date }} {{ event.end_time }}</p>
+  <p><strong>Description:</strong> {{ event.description }}</p>
+  <!-- Add more details as needed -->
+{% endblock %}
