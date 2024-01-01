@@ -1,5 +1,8 @@
 ### Introduction
 
+
+NOTEs to implement better the functionality of event we have to create a way to extend already existing objects with a date field within the calendar app. this would be more suitable as it doesn't touch the models outside the app
+
 Welcome to our Django-based Calendar Application documentation! This application is designed to provide a user interface for managing and displaying events based on dates. Leveraging the power of the Django framework, the application allows you to organize and visualize events in a calendar format. Whether you are planning schedules, tracking important dates, or managing events associated with other models, this application offers flexibility and ease of use.
 
 **Key Features:**

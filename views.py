@@ -2,9 +2,10 @@
 
 import calendar as cal_module
 from django.shortcuts import render, get_object_or_404
-from .models import Event
+from .models import EventLink
 from datetime import datetime, timedelta, date
 from dateutil.relativedelta import relativedelta
+
 
 
 def monthly_calendar(request, year, month):
@@ -12,16 +13,16 @@ def monthly_calendar(request, year, month):
     calendar_data = cal_module.monthcalendar(year, month)
 
     # Logica per ottenere gli eventi del mese
-    #events = get_events_for_month(year, month)
+    events = get_events_for_month(year, month)
 
     # Calcola il mese precedente
     selected_month = datetime(year, month, 1)
     prev_month = selected_month + relativedelta(months=-1)
     next_month = selected_month + relativedelta(months=+1)
-
+    print(events)
     context = {
         'calendar': calendar_data,
-        #'events': events,
+        'events': events,
         'year': year,
         'month': month,
         'prev_month': prev_month,
@@ -33,13 +34,19 @@ def monthly_calendar(request, year, month):
 
 
 def get_events_for_month(year, month):
-    # Logica per ottenere gli eventi del mese
-    # Personalizza questa funzione in base alla tua logica di recupero degli eventi
-    # Ad esempio, puoi utilizzare il tuo modello di evento e la query per ottenere gli eventi del mese
+    # Calcola la data di inizio e fine del mese
     start_date = date(year, month, 1)
-    end_date = date(year, month + 1, 1) - timedelta(days=1)
-    events = Event.objects.filter(start_date__range=[start_date, end_date])
+    _, last_day = cal_module.monthrange(year, month)
+    end_date = start_date + relativedelta(day=last_day)
+
+    # Filtro per gli eventi che hanno la data uguale al mese selezionato
+    events = EventLink.objects.filter(
+        object_date__gte=start_date,
+        object_date__lte=end_date
+    )
+
     return events
+
 
 
 def get_next_month(year, month):
