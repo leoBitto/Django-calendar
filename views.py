@@ -45,7 +45,15 @@ def get_events_for_month(year, month):
         object_date__lte=end_date
     )
 
-    return events
+    # Nel tuo view o context processor Django
+    events_dict = {}
+    for event in events:
+        day_key = event.start_date.day
+        if day_key not in events_dict:
+            events_dict[day_key] = []
+        events_dict[day_key].append(event)
+
+    return events_dict
 
 
 
