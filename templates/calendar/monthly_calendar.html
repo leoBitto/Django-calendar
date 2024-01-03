@@ -38,7 +38,7 @@
                         {{ day }}
                         {% with day_events=events_dict|default:{}|get:day %}
                             {% for event in day_events %}
-                                <p class="mb-0">{{ event.title }} ({{ event.start_time }} - {{ event.end_time }})</p>
+                                <p class="mb-0">{{ event.content_object }}</p>
                             {% endfor %}
                         {% endwith %}
                     </div>
@@ -51,14 +51,4 @@
   </table>
 </div>
 
-<div class="d-flex justify-content-between flex-column container">
-  {% for event in events %}
-    <span>{{event.content_object.name}}</span>
-    <span>{{event.content_object.date}}</span>
-    <span>{{event.content_object.hour}}</span>
-    <span>{{event.content_object.num_of_people}}</span>
-    <span>{{event.content_object.phone_number}}</span>
-    <p>{{event.content_object.note}}</p>
-  {% endfor %}
-</div>
 {% endblock %}
