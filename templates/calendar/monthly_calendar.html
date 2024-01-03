@@ -34,17 +34,15 @@
           {% for day in week %}
             <td class="p-2">
               {% if day != 0 %}
-                
-                  
                     <div class="day-box">
-                      {{ day }}
-                      {% if event %}
-                        <p class="mb-0">{{ event.title }} ({{ event.start_time }} - {{ event.end_time }})</p>
-                      {% endif %}
+                        {{ day }}
+                        {% with day_events=events_dict|default:{}|get:day %}
+                            {% for event in day_events %}
+                                <p class="mb-0">{{ event.title }} ({{ event.start_time }} - {{ event.end_time }})</p>
+                            {% endfor %}
+                        {% endwith %}
                     </div>
-                  </a>
-                
-              {% endif %}
+                {% endif %}
             </td>
           {% endfor %}
         </tr>
