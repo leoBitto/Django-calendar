@@ -6,11 +6,7 @@ Welcome to the documentation for the Calendar app! This app is designed to manag
 
 ## Installation
 
-To get started, make sure you have Django installed in your project. You can install the Calendar app using pip:
-
-```bash
-pip install django-calendar
-```
+To get started, make sure you have Django installed in your project. After cloning this repo inside the project,
 
 Add 'calendar_app' to your installed apps in `settings.py`:
 
@@ -168,6 +164,4 @@ def event_detail(request, event_id):
     return render(request, 'calendar/event_detail.html', context)
 ```
 
-**Note:** Insert the signals (`signals.py`) and the app (`apps.py`) in the correct files of your app, as shown above. Make sure the functions are called correctly in the `signals.py` and `apps.py` files.
 
-This should cover the configuration and usage of the Calendar app in your Django project. If you have further questions or need additional clarification, feel free to ask!
